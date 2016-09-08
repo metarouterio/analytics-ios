@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = "Analytics"
+  s.name             = "AstronomerAnalytics"
   s.version          = "3.4.0"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
@@ -8,11 +8,11 @@ Pod::Spec.new do |s|
                        integrate with over 100s of tools.
                        DESC
 
-  s.homepage         = "http://segment.com/"
+  s.homepage         = "http://astronomer.io/"
   s.license          =  { :type => 'MIT' }
-  s.author           = { "Segment" => "friends@segment.com" }
-  s.source           = { :git => "https://github.com/segmentio/analytics-ios.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/segment'
+  s.author           = { "Astronomer" => "info@astronomer.io" }
+  s.source           = { :git => "https://github.com/astronomerio/analytics-ios.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/astronomerio'
 
   s.ios.deployment_target = '7.0'
   s.tvos.deployment_target = '9.0'
