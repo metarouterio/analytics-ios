@@ -42,7 +42,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSURL *url = [NSURL URLWithString:@"https://api.segment.io/v1/batch"];
+    NSURL *url = [NSURL URLWithString:@"https://api.astronomer.io/v1/batch"];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"POST"];
 
