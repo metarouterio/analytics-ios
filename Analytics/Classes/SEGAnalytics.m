@@ -46,6 +46,7 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     if (self = [super init]) {
         self.shouldUseLocationServices = NO;
         self.enableAdvertisingTracking = YES;
+        self.shouldUseBluetooth = NO;
         self.flushAt = 20;
         _factories = [NSMutableArray array];
         [_factories addObject:[SEGSegmentIntegrationFactory instance]];
@@ -110,14 +111,13 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.factories = [configuration.factories copy];
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
-        self.configuration = configuration;
-        self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
-        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
 #if TARGET_OS_TV
         self.storage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
 #else
         self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
 #endif
+        self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
+        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
 
         // Update settings on each integration immediately
         [self refreshSettings];
@@ -166,7 +166,8 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 }
 
 NSString *const SEGVersionKey = @"SEGVersionKey";
-NSString *const SEGBuildKey = @"SEGBuildKey";
+NSString *const SEGBuildKeyV1 = @"SEGBuildKey";
+NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 - (void)trackApplicationLifecycleEvents:(BOOL)trackApplicationLifecycleEvents
 {
@@ -174,33 +175,41 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
         return;
     }
 
+    // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
+    // can be a string. This migrates SEGBuildKey to be stored as a string.
+    NSInteger previousBuildV1 = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKeyV1];
+    if (previousBuildV1) {
+        [[NSUserDefaults standardUserDefaults] setObject:[@(previousBuildV1) stringValue] forKey:SEGBuildKeyV2];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGBuildKeyV1];
+    }
+
     NSString *previousVersion = [[NSUserDefaults standardUserDefaults] stringForKey:SEGVersionKey];
-    NSInteger previousBuild = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKey];
+    NSString *previousBuildV2 = [[NSUserDefaults standardUserDefaults] stringForKey:SEGBuildKeyV2];
 
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
-    NSInteger currentBuild = [[[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] integerValue];
+    NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
 
-    if (!previousBuild) {
+    if (!previousBuildV2) {
         [self track:@"Application Installed" properties:@{
             @"version" : currentVersion,
-            @"build" : @(currentBuild)
+            @"build" : currentBuild
         }];
-    } else if (currentBuild != previousBuild) {
+    } else if (currentBuild != previousBuildV2) {
         [self track:@"Application Updated" properties:@{
             @"previous_version" : previousVersion,
-            @"previous_build" : @(previousBuild),
+            @"previous_build" : previousBuildV2,
             @"version" : currentVersion,
-            @"build" : @(currentBuild)
+            @"build" : currentBuild
         }];
     }
 
     [self track:@"Application Opened" properties:@{
         @"version" : currentVersion,
-        @"build" : @(currentBuild)
+        @"build" : currentBuild
     }];
 
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
-    [[NSUserDefaults standardUserDefaults] setInteger:currentBuild forKey:SEGBuildKey];
+    [[NSUserDefaults standardUserDefaults] setObject:currentBuild forKey:SEGBuildKeyV2];
 }
 
 - (void)onAppForeground:(NSNotification *)note
@@ -422,7 +431,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     if ([activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
         NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:activity.userInfo.count + 2];
         [properties addEntriesFromDictionary:activity.userInfo];
-        properties[@"url"] = activity.webpageURL;
+        properties[@"url"] = activity.webpageURL.absoluteString;
         properties[@"title"] = activity.title ?: @"";
         [self track:@"Deep Link Opened" properties:[properties copy]];
     }
@@ -562,8 +571,16 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
         if (success) {
             [self setCachedSettings:settings];
+        } else {
+            // TODO: If settings request fail, fall back to using just Segment integration
+            // Won't catch situation where this callback never gets called - that will get addressed separately in regular dev
+            [self setCachedSettings:@{
+                @"integrations" : @{
+                    @"Segment.io" : @{@"apiKey" : self.configuration.writeKey},
+                },
+                @"plan" : @{@"track" : @{}}
+            }];
         }
-
         self.settingsRequest = nil;
     }];
 }
@@ -583,7 +600,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 + (NSString *)version
 {
-    return @"3.4.0";
+    return @"3.5.6";
 }
 
 #pragma mark - Private

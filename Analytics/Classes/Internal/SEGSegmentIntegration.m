@@ -4,9 +4,7 @@
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGSegmentIntegration.h"
-#import "SEGBluetooth.h"
 #import "SEGReachability.h"
-#import "SEGLocation.h"
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
 
@@ -65,9 +63,7 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSDictionary *cachedStaticContext;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
-@property (nonatomic, strong) SEGBluetooth *bluetooth;
 @property (nonatomic, strong) SEGReachability *reachability;
-@property (nonatomic, strong) SEGLocation *location;
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
@@ -99,7 +95,6 @@ static BOOL GetAdTrackingEnabled()
         self.httpClient = analytics.httpClient;
         self.apiURL = [NSURL URLWithString:@"https://api.astronomer.io/v1/import"];
         self.userId = [self getUserId];
-        self.bluetooth = [[SEGBluetooth alloc] init];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
         self.cachedStaticContext = [self staticContext];
@@ -236,9 +231,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     context[@"network"] = ({
         NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
 
-        if (self.bluetooth.hasKnownState)
-            network[@"bluetooth"] = @(self.bluetooth.isEnabled);
-
         if (self.reachability.isReachable) {
             network[@"wifi"] = @(self.reachability.isReachableViaWiFi);
             network[@"cellular"] = @(self.reachability.isReachableViaWWAN);
@@ -247,21 +239,8 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         network;
     });
 
-    self.location = !self.location ? [self.configuration shouldUseLocationServices] ? [SEGLocation new] : nil : self.location;
-
-#if TARGET_OS_IOS || (TARGET_OS_MAC && !TARGET_OS_IPHONE)
-    [self.location startUpdatingLocation];
-#endif
-
-    if (self.location.hasKnownLocation)
-        context[@"location"] = self.location.locationDictionary;
-
     context[@"traits"] = ({
         NSMutableDictionary *traits = [[NSMutableDictionary alloc] initWithDictionary:[self traits]];
-
-        if (self.location.hasKnownLocation)
-            traits[@"address"] = self.location.addressDictionary;
-
         traits;
     });
 
@@ -403,7 +382,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if ([activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
         self.referrer = @{
-            @"url" : activity.webpageURL,
+            @"url" : activity.webpageURL.absoluteString,
         };
     }
 }
