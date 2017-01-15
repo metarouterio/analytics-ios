@@ -1,26 +1,17 @@
-# Analytics
+# Astronomer Analytics
 
-[![Version](https://img.shields.io/cocoapods/v/Analytics.svg?style=flat)](https://cocoapods.org//pods/Analytics)
-[![License](https://img.shields.io/cocoapods/l/Analytics.svg?style=flat)](http://cocoapods.org/pods/Analytics)
-
-analytics-ios is an iOS client for Segment.
+analytics-ios is an iOS client for Astronomer. Adapated from Segment.
 
 Special thanks to [Tony Xiao](https://github.com/tonyxiao), [Lee Hasiuk](https://github.com/lhasiuk) and [Cristian Bica](https://github.com/cristianbica) for their contributions to the library!
 
 ## Installation
 
-Analytics is available through [CocoaPods](http://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage).
+AstronomerAnalytics is available through [CocoaPods](http://cocoapods.org).
 
 ### CocoaPods
 
 ```ruby
-pod "Analytics"
-```
-
-### Carthage
-
-```
-github "segmentio/analytics-ios"
+pod "AstronomerAnalytics"
 ```
 
 ## Quickstart
