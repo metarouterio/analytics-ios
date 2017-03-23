@@ -1,9 +1,19 @@
 Change Log
 ==========
 
-Version 3.5.6 *(3rd January, 2016)*
+
+Version 3.6.0 *(28th February, 2017)*
 -------------------------------------
-* [Fix](https://github.com/segmentio/analytics-ios/commit/48f9ef9ab53d774a31145bc21636026d7fb01679): Fix issue where automatically tracked application lifecycle events (`Application Opened` and `Application Updated`) reported truncated build numbers. So if the build number was `1.0.0`, the SDK would collect it as `1`. This fix ensures that the full build is reported.
+* Promoting `3.6.0-rc` to stable release `3.6.0` after sufficient time and exposure in pre-release. 
+
+Version 3.6.0-rc *(10th January, 2017)*
+-------------------------------------
+* Publicly exposing the middleware API, allowing custom middlewares to be inserted into the chain
+* Added `SEGBlockMiddleware` helper to make it easier to create middleware out of anonymous functions
+
+Version 3.6.0-beta *(1st December, 2016)*
+-------------------------------------
+* Major refactor laying the groundwork for a new middleware based architecture that will enable a whole new class of capabilities for analytics-ios
 
 Version 3.5.5 *(30th November, 2016)*
 -------------------------------------
