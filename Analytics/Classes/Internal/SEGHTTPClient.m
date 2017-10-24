@@ -20,6 +20,7 @@
             self.requestFactory = requestFactory;
         }
         self.endpoint = endpoint;
+        NSLog(@"Initialized client with endpoint: %@", self.endpoint);
     }
     return self;
 }
@@ -43,6 +44,7 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
     NSString *urlString = [NSString stringWithFormat:@"https://%@/v1/batch", self.endpoint];
+    NSLog(@"batch: %@", urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"POST"];

@@ -94,6 +94,7 @@ static BOOL GetAdTrackingEnabled()
         self.configuration = analytics.configuration;
         self.httpClient = analytics.httpClient;
         NSString *urlString = [NSString stringWithFormat:@"https://%@/v1/import", self.configuration.endpoint];
+        NSLog(@"import: %@", urlString);
         self.apiURL = [NSURL URLWithString:urlString];
         self.userId = [self getUserId];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
