@@ -41,7 +41,6 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.writeKey = writeKey;
         self.endpoint = endpoint;
         self.cdn = cdn;
-        NSLog(@"Initializing Configuration with endpoint: %@", self.endpoint);
     }
     return self;
 }
