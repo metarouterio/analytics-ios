@@ -21,6 +21,8 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  *
  * @param writeKey Your project's write key from segment.io.
  */
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey;
+
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn;
 
 /**
@@ -335,6 +337,8 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 
 @interface SEGAnalytics (Deprecated)
 
++ (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
+- (instancetype)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
 + (void)initializeWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn __attribute__((deprecated("Use +setupWithConfiguration: instead")));
 - (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn __attribute__((deprecated("Use -initWithConfiguration: instead")));
 - (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));

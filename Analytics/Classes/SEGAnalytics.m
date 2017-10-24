@@ -30,6 +30,11 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 @implementation SEGAnalyticsConfiguration
 
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey
+{
+    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey endpoint:nil cdn:nil];
+}
+
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn
 {
     return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey endpoint:endpoint cdn:cdn];
@@ -39,8 +44,9 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 {
     if (self = [self init]) {
         self.writeKey = writeKey;
-        self.endpoint = endpoint;
-        self.cdn = cdn;
+        self.endpoint = (endpoint) ? endpoint : @"api.astronomer.io";
+        self.cdn = (cdn) ? cdn : @"cdn.astronomer.io";
+        NSLog(@"Endpoint: %1$@ CDN: %2$@", self.endpoint, self.cdn);
     }
     return self;
 }
@@ -739,6 +745,16 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-implementations"
+
++ (void)initializeWithWriteKey:(NSString *)writeKey
+{
+    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey endpoint:nil cdn:nil]];
+}
+
+- (instancetype)initWithWriteKey:(NSString *)writeKey
+{
+    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey endpoint:nil cdn:nil]];
+}
 
 + (void)initializeWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn
 {
