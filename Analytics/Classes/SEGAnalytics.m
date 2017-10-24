@@ -743,7 +743,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey endpoint:endpoint]];
 }
 
-- (instancetype)initWithWriteKey:(NSString *)writeKey :(NSString *) endpoint
+- (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint
 {
     return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey endpoint:endpoint]];
 }

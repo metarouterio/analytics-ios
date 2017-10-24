@@ -328,7 +328,7 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 
 @interface SEGAnalytics (Deprecated)
 
-+ (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
++ (void)initializeWithWriteKey:(NSString *)writeKey endpoint: (NSString *)endpoint __attribute__((deprecated("Use +setupWithConfiguration: instead")));
 - (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint __attribute__((deprecated("Use -initWithConfiguration: instead")));
 - (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
