@@ -5,10 +5,11 @@
 @interface SEGHTTPClient : NSObject
 
 @property (nonatomic, strong) SEGRequestFactory requestFactory;
+@property (nonatomic, copy, readwrite) NSString *endpoint;
 
 + (SEGRequestFactory)defaultRequestFactory;
 
-- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory;
+- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory endpoint:(NSString *)endpoint;
 
 /**
  * Upload dictionary formatted as per https://segment.com/docs/sources/server/http/#batch.

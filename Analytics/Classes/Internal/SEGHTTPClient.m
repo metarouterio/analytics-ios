@@ -2,7 +2,6 @@
 #import "NSData+SEGGZIP.h"
 #import "SEGAnalyticsUtils.h"
 
-
 @implementation SEGHTTPClient
 
 + (NSMutableURLRequest * (^)(NSURL *))defaultRequestFactory
@@ -12,7 +11,7 @@
     };
 }
 
-- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory
+- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory endpoint:(NSString *)endpoint
 {
     if (self = [self init]) {
         if (requestFactory == nil) {
@@ -20,6 +19,7 @@
         } else {
             self.requestFactory = requestFactory;
         }
+        self.endpoint = endpoint;
     }
     return self;
 }
@@ -42,7 +42,8 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSURL *url = [NSURL URLWithString:@"https://api.astronomer.io/v1/batch"];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/v1/batch", self.endpoint];
+    NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"POST"];
 

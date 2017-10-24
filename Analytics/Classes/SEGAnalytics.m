@@ -119,7 +119,7 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
 #endif
         self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
-        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
+        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory endpoint:configuration.endpoint];
 
         // Update settings on each integration immediately
         [self refreshSettings];
