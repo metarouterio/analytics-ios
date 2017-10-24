@@ -21,6 +21,7 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 @interface SEGAnalyticsConfiguration ()
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;
+@property (nonatomic, copy, readwrite) NSString *endpoint;
 @property (nonatomic, strong, readonly) NSMutableArray *factories;
 
 @end
@@ -28,15 +29,16 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 @implementation SEGAnalyticsConfiguration
 
-+ (instancetype)configurationWithWriteKey:(NSString *)writeKey
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey :(NSString *)endpoint
 {
-    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey];
+    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey :endpoint];
 }
 
-- (instancetype)initWithWriteKey:(NSString *)writeKey
+- (instancetype)initWithWriteKey:(NSString *)writeKey :(NSString *)endpoint
 {
     if (self = [self init]) {
         self.writeKey = writeKey;
+        self.endpoint = endpoint;
     }
     return self;
 }
@@ -736,14 +738,14 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-implementations"
 
-+ (void)initializeWithWriteKey:(NSString *)writeKey
++ (void)initializeWithWriteKey:(NSString *)writeKey :(NSString *)endpoint
 {
-    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
+    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey:endpoint]];
 }
 
-- (instancetype)initWithWriteKey:(NSString *)writeKey
+- (instancetype)initWithWriteKey:(NSString *)writeKey :(NSString *) endpoint
 {
-    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
+    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey:endpoint]];
 }
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken
