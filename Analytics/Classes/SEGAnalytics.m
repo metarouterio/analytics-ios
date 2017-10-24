@@ -22,6 +22,7 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;
 @property (nonatomic, copy, readwrite) NSString *endpoint;
+@property (nonatomic, copy, readwrite) NSString *cdn;
 @property (nonatomic, strong, readonly) NSMutableArray *factories;
 
 @end
@@ -29,16 +30,17 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 @implementation SEGAnalyticsConfiguration
 
-+ (instancetype)configurationWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn
 {
-    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey endpoint:endpoint];
+    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey endpoint:endpoint cdn:cdn];
 }
 
-- (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint
+- (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn
 {
     if (self = [self init]) {
         self.writeKey = writeKey;
         self.endpoint = endpoint;
+        self.cdn = cdn;
         NSLog(@"Initializing Configuration with endpoint: %@", self.endpoint);
     }
     return self;
@@ -571,7 +573,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         return;
     }
 
-    self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
+    self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey cdn:self.configuration.cdn completionHandler:^(BOOL success, NSDictionary *settings) {
         if (success) {
             [self setCachedSettings:settings];
         } else {
@@ -739,14 +741,14 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-implementations"
 
-+ (void)initializeWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint
++ (void)initializeWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn
 {
-    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey endpoint:endpoint]];
+    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey endpoint:endpoint cdn:cdn]];
 }
 
-- (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint
+- (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn
 {
-    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey endpoint:endpoint]];
+    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey endpoint:endpoint cdn:cdn]];
 }
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken

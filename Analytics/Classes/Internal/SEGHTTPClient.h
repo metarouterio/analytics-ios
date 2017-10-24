@@ -19,7 +19,7 @@
  */
 - (NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler;
 
-- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, NSDictionary *settings))completionHandler;
+- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey cdn:(NSString *)cdn completionHandler:(void (^)(BOOL success, NSDictionary *settings))completionHandler;
 
 - (NSURLSessionDataTask *)attributionWithWriteKey:(NSString *)writeKey forDevice:(NSDictionary *)context completionHandler:(void (^)(BOOL success, NSDictionary *properties))completionHandler;
 

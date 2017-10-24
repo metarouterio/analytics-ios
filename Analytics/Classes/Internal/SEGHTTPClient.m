@@ -99,7 +99,7 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, NSDictionary *settings))completionHandler
+- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey cdn:(NSString *)cdn completionHandler:(void (^)(BOOL success, NSDictionary *settings))completionHandler
 {
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.HTTPAdditionalHeaders = @{
@@ -107,7 +107,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSString *rawURL = [NSString stringWithFormat:@"https://cdn.astronomer.io/v1/projects/%@/settings", writeKey];
+    NSString *rawURL = [NSString stringWithFormat:@"https://%2$@/v1/projects/%1$@/settings", writeKey, cdn];
     NSURL *url = [NSURL URLWithString:rawURL];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"GET"];

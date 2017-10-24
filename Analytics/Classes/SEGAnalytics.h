@@ -21,7 +21,7 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  *
  * @param writeKey Your project's write key from segment.io.
  */
-+ (instancetype)configurationWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint;
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn;
 
 /**
  * Your project's write key from segment.io.
@@ -36,6 +36,13 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  * @see +configurationWithWriteKey:
  */
 @property (nonatomic, copy, readonly) NSString *endpoint;
+
+/**
+ * Your project's cdn.
+ *
+ * @see +configurationWithWriteKey:
+ */
+@property (nonatomic, copy, readonly) NSString *cdn;
 
 /**
  * Whether the analytics client should use location services.
@@ -328,8 +335,8 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 
 @interface SEGAnalytics (Deprecated)
 
-+ (void)initializeWithWriteKey:(NSString *)writeKey endpoint: (NSString *)endpoint __attribute__((deprecated("Use +setupWithConfiguration: instead")));
-- (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint __attribute__((deprecated("Use -initWithConfiguration: instead")));
++ (void)initializeWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn __attribute__((deprecated("Use +setupWithConfiguration: instead")));
+- (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn __attribute__((deprecated("Use -initWithConfiguration: instead")));
 - (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
