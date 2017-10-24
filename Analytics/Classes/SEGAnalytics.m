@@ -46,7 +46,6 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.writeKey = writeKey;
         self.endpoint = (endpoint) ? endpoint : @"api.astronomer.io";
         self.cdn = (cdn) ? cdn : @"cdn.astronomer.io";
-        NSLog(@"Endpoint: %1$@ CDN: %2$@", self.endpoint, self.cdn);
     }
     return self;
 }
