@@ -17,13 +17,13 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 @interface SEGAnalyticsConfiguration : NSObject
 
 /**
- * Creates and returns a configuration with default settings, the given write key, and endpoint.
+ * Creates and returns a configuration with default settings, the given write key, and host.
  *
  * @param writeKey Your project's write key from segment.io.
  */
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey;
 
-+ (instancetype)configurationWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn;
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn;
 
 /**
  * Your project's write key from segment.io.
@@ -33,11 +33,11 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 @property (nonatomic, copy, readonly) NSString *writeKey;
 
 /**
- * Your project's endpoint for API calls.
+ * Your project's host for API calls.
  *
  * @see +configurationWithWriteKey:
  */
-@property (nonatomic, copy, readonly) NSString *endpoint;
+@property (nonatomic, copy, readonly) NSString *host;
 
 /**
  * Your project's cdn.
@@ -339,8 +339,8 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 
 + (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
 - (instancetype)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
-+ (void)initializeWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn __attribute__((deprecated("Use +setupWithConfiguration: instead")));
-- (instancetype)initWithWriteKey:(NSString *)writeKey endpoint:(NSString *)endpoint cdn:(NSString *)cdn __attribute__((deprecated("Use -initWithConfiguration: instead")));
++ (void)initializeWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn __attribute__((deprecated("Use +setupWithConfiguration: instead")));
+- (instancetype)initWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn __attribute__((deprecated("Use -initWithConfiguration: instead")));
 - (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));

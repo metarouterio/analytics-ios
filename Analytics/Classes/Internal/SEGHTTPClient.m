@@ -11,7 +11,7 @@
     };
 }
 
-- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory endpoint:(NSString *)endpoint
+- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory host:(NSString *)host
 {
     if (self = [self init]) {
         if (requestFactory == nil) {
@@ -19,7 +19,7 @@
         } else {
             self.requestFactory = requestFactory;
         }
-        self.endpoint = endpoint;
+        self.host = host;
     }
     return self;
 }
@@ -42,7 +42,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/v1/batch", self.endpoint];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/v1/batch", self.host];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"POST"];
@@ -105,7 +105,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSString *rawURL = [NSString stringWithFormat:@"https://%2$@/v1/projects/%1$@/settings", writeKey, cdn];
+    NSString *rawURL = [NSString stringWithFormat:@"http://%2$@/v1/projects/%1$@/settings", writeKey, cdn];
     NSURL *url = [NSURL URLWithString:rawURL];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"GET"];
