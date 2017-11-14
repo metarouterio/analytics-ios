@@ -21,6 +21,8 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 @interface SEGAnalyticsConfiguration ()
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;
+@property (nonatomic, copy, readwrite) NSString *host;
+@property (nonatomic, copy, readwrite) NSString *cdn;
 @property (nonatomic, strong, readonly) NSMutableArray *factories;
 
 @end
@@ -30,13 +32,20 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey
 {
-    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey];
+    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey host:nil cdn:nil];
 }
 
-- (instancetype)initWithWriteKey:(NSString *)writeKey
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn
+{
+    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey host:host cdn:cdn];
+}
+
+- (instancetype)initWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn
 {
     if (self = [self init]) {
         self.writeKey = writeKey;
+        self.host = (host) ? host : @"api.astronomer.io";
+        self.cdn = (cdn) ? cdn : @"cdn.astronomer.io";
     }
     return self;
 }
@@ -117,7 +126,7 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
 #endif
         self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
-        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
+        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory host:configuration.host];
 
         // Update settings on each integration immediately
         [self refreshSettings];
@@ -568,7 +577,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         return;
     }
 
-    self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
+    self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey cdn:self.configuration.cdn completionHandler:^(BOOL success, NSDictionary *settings) {
         if (success) {
             [self setCachedSettings:settings];
         } else {
@@ -738,12 +747,22 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 + (void)initializeWithWriteKey:(NSString *)writeKey
 {
-    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
+    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey host:nil cdn:nil]];
 }
 
 - (instancetype)initWithWriteKey:(NSString *)writeKey
 {
-    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
+    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey host:nil cdn:nil]];
+}
+
++ (void)initializeWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn
+{
+    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey host:host cdn:cdn]];
+}
+
+- (instancetype)initWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn
+{
+    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey host:host cdn:cdn]];
 }
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken

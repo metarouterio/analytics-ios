@@ -93,7 +93,8 @@ static BOOL GetAdTrackingEnabled()
         self.analytics = analytics;
         self.configuration = analytics.configuration;
         self.httpClient = analytics.httpClient;
-        self.apiURL = [NSURL URLWithString:@"https://api.astronomer.io/v1/import"];
+        NSString *urlString = [NSString stringWithFormat:@"https://%@/v1/import", self.configuration.host];
+        self.apiURL = [NSURL URLWithString:urlString];
         self.userId = [self getUserId];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];

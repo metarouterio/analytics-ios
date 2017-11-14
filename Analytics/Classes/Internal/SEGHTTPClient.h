@@ -5,10 +5,11 @@
 @interface SEGHTTPClient : NSObject
 
 @property (nonatomic, strong) SEGRequestFactory requestFactory;
+@property (nonatomic, copy, readwrite) NSString *host;
 
 + (SEGRequestFactory)defaultRequestFactory;
 
-- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory;
+- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory host:(NSString *)host;
 
 /**
  * Upload dictionary formatted as per https://segment.com/docs/sources/server/http/#batch.
@@ -18,7 +19,7 @@
  */
 - (NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler;
 
-- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, NSDictionary *settings))completionHandler;
+- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey cdn:(NSString *)cdn completionHandler:(void (^)(BOOL success, NSDictionary *settings))completionHandler;
 
 - (NSURLSessionDataTask *)attributionWithWriteKey:(NSString *)writeKey forDevice:(NSDictionary *)context completionHandler:(void (^)(BOOL success, NSDictionary *properties))completionHandler;
 

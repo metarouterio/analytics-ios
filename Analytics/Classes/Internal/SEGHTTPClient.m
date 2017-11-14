@@ -2,7 +2,6 @@
 #import "NSData+SEGGZIP.h"
 #import "SEGAnalyticsUtils.h"
 
-
 @implementation SEGHTTPClient
 
 + (NSMutableURLRequest * (^)(NSURL *))defaultRequestFactory
@@ -12,7 +11,7 @@
     };
 }
 
-- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory
+- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory host:(NSString *)host
 {
     if (self = [self init]) {
         if (requestFactory == nil) {
@@ -20,6 +19,7 @@
         } else {
             self.requestFactory = requestFactory;
         }
+        self.host = host;
     }
     return self;
 }
@@ -42,7 +42,8 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSURL *url = [NSURL URLWithString:@"https://api.astronomer.io/v1/batch"];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/v1/batch", self.host];
+    NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"POST"];
 
@@ -96,7 +97,7 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, NSDictionary *settings))completionHandler
+- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey cdn:(NSString *)cdn completionHandler:(void (^)(BOOL success, NSDictionary *settings))completionHandler
 {
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.HTTPAdditionalHeaders = @{
@@ -104,7 +105,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSString *rawURL = [NSString stringWithFormat:@"https://cdn.astronomer.io/v1/projects/%@/settings", writeKey];
+    NSString *rawURL = [NSString stringWithFormat:@"http://%2$@/v1/projects/%1$@/settings", writeKey, cdn];
     NSURL *url = [NSURL URLWithString:rawURL];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"GET"];

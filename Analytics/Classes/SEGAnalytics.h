@@ -17,11 +17,13 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 @interface SEGAnalyticsConfiguration : NSObject
 
 /**
- * Creates and returns a configuration with default settings and the given write key.
+ * Creates and returns a configuration with default settings, the given write key, and host.
  *
  * @param writeKey Your project's write key from segment.io.
  */
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey;
+
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn;
 
 /**
  * Your project's write key from segment.io.
@@ -29,6 +31,20 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  * @see +configurationWithWriteKey:
  */
 @property (nonatomic, copy, readonly) NSString *writeKey;
+
+/**
+ * Your project's host for API calls.
+ *
+ * @see +configurationWithWriteKey:
+ */
+@property (nonatomic, copy, readonly) NSString *host;
+
+/**
+ * Your project's cdn.
+ *
+ * @see +configurationWithWriteKey:
+ */
+@property (nonatomic, copy, readonly) NSString *cdn;
 
 /**
  * Whether the analytics client should use location services.
@@ -323,6 +339,8 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 
 + (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
 - (instancetype)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
++ (void)initializeWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn __attribute__((deprecated("Use +setupWithConfiguration: instead")));
+- (instancetype)initWithWriteKey:(NSString *)writeKey host:(NSString *)host cdn:(NSString *)cdn __attribute__((deprecated("Use -initWithConfiguration: instead")));
 - (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
