@@ -55,6 +55,7 @@
         self.enableAdvertisingTracking = YES;
         self.shouldUseBluetooth = NO;
         self.flushAt = 20;
+        self.trackAttributionData = NO;
         _factories = [NSMutableArray array];
         Class applicationClass = NSClassFromString(@"UIApplication");
         if (applicationClass) {
