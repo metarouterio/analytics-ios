@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = "Analytics"
+  s.name             = "AstronomerAnalytics"
   s.version          = "rc3.6.9"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
