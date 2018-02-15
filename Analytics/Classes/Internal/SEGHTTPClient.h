@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (SEGRequestFactory)defaultRequestFactory;
 + (NSString *)authorizationHeader:(NSString *)writeKey;
-
 - (instancetype)initWithRequestFactory:(SEGRequestFactory _Nullable)requestFactory;
 
 /**

@@ -17,7 +17,6 @@
 
 static SEGAnalytics *__sharedInstance = nil;
 
-
 @interface SEGAnalytics ()
 
 @property (nonatomic, assign) BOOL enabled;
@@ -126,6 +125,14 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGBuildKeyV1];
     }
 
+    // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
+    // can be a string. This migrates SEGBuildKey to be stored as a string.
+    NSInteger previousBuildV1 = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKeyV1];
+    if (previousBuildV1) {
+        [[NSUserDefaults standardUserDefaults] setObject:[@(previousBuildV1) stringValue] forKey:SEGBuildKeyV2];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGBuildKeyV1];
+    }
+
     NSString *previousVersion = [[NSUserDefaults standardUserDefaults] stringForKey:SEGVersionKey];
     NSString *previousBuildV2 = [[NSUserDefaults standardUserDefaults] stringForKey:SEGBuildKeyV2];
 
@@ -157,7 +164,6 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setObject:currentBuild forKey:SEGBuildKeyV2];
-
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

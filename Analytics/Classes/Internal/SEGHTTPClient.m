@@ -2,7 +2,6 @@
 #import "NSData+SEGGZIP.h"
 #import "SEGAnalyticsUtils.h"
 
-
 @implementation SEGHTTPClient
 
 + (NSMutableURLRequest * (^)(NSURL *))defaultRequestFactory
