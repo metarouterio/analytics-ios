@@ -1,9 +1,84 @@
 Change Log
 ==========
 
+Version 3.6.9 *(3rd December, 2017)*
+-------------------------------------
+
+* [Fix](https://github.com/segmentio/analytics-ios/pull/736): Reverts [ability to run connection factories asynchronously](https://github.com/segmentio/analytics-ios/pull/720). This fixes a bug in 3.6.9 that caused the library to not send events to the Segment API.
+
+Version 3.6.8 *(28th October, 2017)*
+-------------------------------------
+
+This version included a bug that caused the library to not send events to the Segment API. We recommend using version `3.6.9` which fixes this bug and includes all the other improvements available in this release.
+
+* [Fix](https://github.com/segmentio/analytics-ios/pull/700): Fixes some compiler warnings seen when importing analytics-ios via Swift in a Carthage project.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/730): Fix crash when trying to get screen name in some cases.
+* [New](https://github.com/segmentio/analytics-ios/pull/727): Support schema defaults.
+* [New](https://github.com/segmentio/analytics-ios/pull/724): Send disabled events to Segment so they can be surfaced in the debugger. This won't be sent to any destinations.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/723): Fix date formatting to be RFC 3339 compliant.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/715): Always deliver events asynchronously to integrations.
+
+~~* [Improvement](https://github.com/segmentio/analytics-ios/pull/720): Run connection factory asynchronously so it doesn't block queuing events.~~
+
+Version 3.6.7 *(24th August, 2017)*
+-------------------------------------
+* Use DEBUG preprocessor flag to conditionally disable assertions in prod #711
+
+Version 3.6.6 *(15th August, 2017)*
+-------------------------------------
+* Update Info.plist version with library version. Add Makefile for building dynamic framework via Carthage. Explicitly distributing frameworks for installation outside of dependency managers.
+
+Version 3.6.5 *(7th August, 2017)*
+-------------------------------------
+* Default to empty values rather than `NSNull` for automatically tracked events #706
+* Fix events not persisting to disk when `NSNull` values are sent by removing keys containing `NSNull` values from events #707
+  * Note this will remove `NSNull` values from dictionaries and arrays, modifying the tracked data
+
+Version 3.6.4 *(19th July, 2017)*
+-------------------------------------
+* Add workaround for UIApplication type mismatch with Swift mapping. #704
+
+Version 3.6.3 *(7th July, 2017)*
+-------------------------------------
+* Fix NSURLSession being prematurely invalidated (#702)
+
+Version 3.6.2 *(6th July, 2017)*
+-------------------------------------
+* Remove canceling ongoing requests in reset method. (#691)
+* Extract UIApplication to permit linkage with iOS extensions. (#698)
+* Add missing includes to umbrella header (#696)
+* Reuse NSURLSession in SEGHTTPCLient (#699)
+
+Version 3.6.1 *(24th May, 2017)*
+-------------------------------------
+* Pass through userInfo when posting NSNotification
+* Fix `Application Updated` event #685
+* Fix `Application Opened` event #675
+ * Fire during applicationWillEnterForeground, not just applicationDidFinishLaunching
+ * Adding from_background, referring_application and url to Application Opened event
+* Add [session finishTasksAndInvalidate] to SEGHTTPClient.m to prevent memory leak #679
+* Use a separate queue for endBackgroundTask to fix deadlock (#684)
+* Exposing SEGMiddleware and SEGContext header publicly
+* Removing deprecated APIs
+* Adding several test suites - reaching 70% coverage
+
+Version 3.6.0 *(28th February, 2017)*
+-------------------------------------
+* Promoting `3.6.0-rc` to stable release `3.6.0` after sufficient time and exposure in pre-release.
+
+Version 3.6.0-rc *(10th January, 2017)*
+-------------------------------------
+* Publicly exposing the middleware API, allowing custom middlewares to be inserted into the chain
+* Added `SEGBlockMiddleware` helper to make it easier to create middleware out of anonymous functions
+
+Version 3.6.0-beta *(1st December, 2016)*
+-------------------------------------
+* Major refactor laying the groundwork for a new middleware based architecture that will enable a whole new class of capabilities for analytics-ios
+
 Version 3.5.6 *(3rd January, 2016)*
 -------------------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/commit/48f9ef9ab53d774a31145bc21636026d7fb01679): Fix issue where automatically tracked application lifecycle events (`Application Opened` and `Application Updated`) reported truncated build numbers. So if the build number was `1.0.0`, the SDK would collect it as `1`. This fix ensures that the full build is reported.
+
 
 Version 3.5.5 *(30th November, 2016)*
 -------------------------------------
@@ -25,13 +100,15 @@ Version 3.5.2 *(10th October, 2016)*
 
 Version 3.5.1 *(5th October, 2016)*
 -------------------------------------
+* Not a recommended version.  Regression introduced in 3.5.0 will generate a new anonymousId on every app launch.
 
 * [Fix](https://github.com/segmentio/analytics-ios/pull/613): Removed automatic bluetooth and location info collection to workaround app submission issues.
 
 Version 3.5.0 *(12th September, 2016)*
 -------------------------------------
+* Not a recommended version.  Regression introduced in 3.5.0 will generate a new anonymousId on every app launch.
 
- * [New](https://github.com/segmentio/analytics-ios/pull/592): Adds a `SEGCrypto` API that can be used to configure the at rest encryption strategy for the client.
+* [New](https://github.com/segmentio/analytics-ios/pull/592): Adds a `SEGCrypto` API that can be used to configure the at rest encryption strategy for the client.
 
  ```objc
  SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];

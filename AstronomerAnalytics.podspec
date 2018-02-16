@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "AstronomerAnalytics"
-  s.version          = "3.5.6"
+  s.version          = "3.6.9"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
   s.description      = <<-DESC
@@ -19,5 +19,8 @@ Pod::Spec.new do |s|
 
   s.framework = 'Security'
 
-  s.source_files = 'Analytics/Classes/**/*'
+  s.source_files = [
+    'Analytics/Classes/**/*',
+    'Analytics/Vendor/**/*'
+  ]
 end

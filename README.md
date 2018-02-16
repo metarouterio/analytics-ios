@@ -11,13 +11,10 @@ AstronomerAnalytics is available through [CocoaPods](http://cocoapods.org).
 ### CocoaPods
 
 ```ruby
-pod "AstronomerAnalytics"
+pod "AstronomerAnalytics", "3.6.9"
+github "astronomerio/analytics-ios"
 ```
-
-## Quickstart
-
-Refer to the Quickstart documentation at [https://segment.com/docs/libraries/ios/quickstart](https://segment.com/docs/libraries/ios/quickstart/).
 
 ## Documentation
 
-More detailed documentation is available at [https://segment.com/docs/libraries/ios](https://segment.com/docs/libraries/ios/).
+More detailed documentation is available at [https://docs.astronomer.io/v2/clickstream/sources/ios.html](https://docs.astronomer.io/v2/clickstream/sources/ios.html).
