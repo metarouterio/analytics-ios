@@ -41,10 +41,13 @@ class AnalyticsTests: QuickSpec {
 
     it("initialized correctly") {
       expect(analytics.configuration.flushAt) == 20
+      expect(analytics.configuration.flushInterval) == 30
+      expect(analytics.configuration.maxQueueSize) == 1000
       expect(analytics.configuration.writeKey) == "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE"
       expect(analytics.configuration.shouldUseLocationServices) == false
       expect(analytics.configuration.enableAdvertisingTracking) == true
       expect(analytics.configuration.shouldUseBluetooth) == false
+      expect(analytics.configuration.httpSessionDelegate) == nil
       expect(analytics.getAnonymousId()).toNot(beNil())
     }
 
@@ -100,12 +103,44 @@ class AnalyticsTests: QuickSpec {
       expect(event?.event) == "Application Opened"
       expect(event?.properties?["from_background"] as? Bool) == true
     }
+    
+    it("fires Application Backgrounded during UIApplicationDidEnterBackground") {
+      testMiddleware.swallowEvent = true
+      NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
+      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      expect(event?.event) == "Application Backgrounded"
+    }
 
     it("flushes when UIApplicationDidEnterBackgroundNotification is fired") {
       analytics.track("test")
       NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
       expect(testApplication.backgroundTasks.count).toEventually(equal(1))
       expect(testApplication.backgroundTasks[0].isEnded).toEventually(beFalse())
+    }
+    
+    it("respects maxQueueSize") {
+      let max = 72
+      config.maxQueueSize = UInt(max)
+
+      for i in 1...max * 2 {
+        analytics.track("test #\(i)")
+      }
+
+      let integration = analytics.test_integrationsManager()?.test_segmentIntegration()
+      expect(integration).notTo(beNil())
+      
+      analytics.flush()
+      waitUntil(timeout: 60) {done in
+        let queue = DispatchQueue(label: "test")
+        
+        queue.async {
+          while(integration?.test_queue()?.count != max) {
+            sleep(1)
+          }
+
+          done()
+        }
+      }
     }
 
     it("protocol conformance should not interfere with UIApplication interface") {
@@ -119,6 +154,52 @@ class AnalyticsTests: QuickSpec {
       // Note that this doesn't appear to be an issue any longer in Xcode9b3.
       let task = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
       UIApplication.shared.endBackgroundTask(task)
+    }
+    
+    it("flushes using flushTimer") {
+      let integration = analytics.test_integrationsManager()?.test_segmentIntegration()
+
+      analytics.track("test")
+
+      expect(integration?.test_flushTimer()).toEventuallyNot(beNil())
+      expect(integration?.test_batchRequest()).to(beNil())
+
+      integration?.test_flushTimer()?.fire()
+      
+      expect(integration?.test_batchRequest()).toEventuallyNot(beNil())
+    }
+
+    it("respects flushInterval") {
+      let timer = analytics
+        .test_integrationsManager()?
+        .test_segmentIntegration()?
+        .test_flushTimer()
+      
+      expect(timer).toNot(beNil())
+      expect(timer?.timeInterval) == config.flushInterval
+    }
+    
+    it("redacts sensible URLs from deep links tracking") {
+      testMiddleware.swallowEvent = true
+      analytics.configuration.trackDeepLinks = true
+      analytics.open(URL(string: "fb123456789://authorize#access_token=hastoberedacted")!, options: [:])
+      
+      
+      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      expect(event?.event) == "Deep Link Opened"
+      expect(event?.properties?["url"] as? String) == "fb123456789://authorize#access_token=((redacted/fb-auth-token))"
+    }
+
+    it("redacts sensible URLs from deep links tracking using custom filters") {
+      testMiddleware.swallowEvent = true
+      analytics.configuration.payloadFilters["(myapp://auth\\?token=)([^&]+)"] = "$1((redacted/my-auth))"
+      analytics.configuration.trackDeepLinks = true
+      analytics.open(URL(string: "myapp://auth?token=hastoberedacted&other=stuff")!, options: [:])
+      
+      
+      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      expect(event?.event) == "Deep Link Opened"
+      expect(event?.properties?["url"] as? String) == "myapp://auth?token=((redacted/my-auth))&other=stuff"
     }
   }
 

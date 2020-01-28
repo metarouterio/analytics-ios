@@ -1,18 +1,18 @@
 SDK ?= "iphonesimulator"
 DESTINATION ?= "platform=iOS Simulator,name=iPhone X"
 PROJECT := Analytics
-XC_ARGS := -scheme $(PROJECT) -workspace $(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
+XC_ARGS := -workspace $(PROJECT).xcworkspace -scheme $(PROJECT) -destination $(DESTINATION) GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
 XC_BUILD_ARGS := ONLY_ACTIVE_ARCH=NO
-XC_TEST_ARGS := GCC_GENERATE_TEST_COVERAGE_FILES=YES
+XC_TEST_ARGS := GCC_GENERATE_TEST_COVERAGE_FILES=YES RUN_E2E_TESTS=$(RUN_E2E_TESTS) WEBHOOK_AUTH_USERNAME=$(WEBHOOK_AUTH_USERNAME)
 
 bootstrap:
 	.buildscript/bootstrap.sh
 
-install: Podfile Analytics.podspec
+dependencies: Podfile Analytics.podspec
 	pod install
 
 lint:
-	pod lib lint
+	pod lib lint --allow-warnings
 
 carthage:
 	carthage build --no-skip-current
@@ -36,12 +36,9 @@ build-pretty:
 	set -o pipefail && xcodebuild $(XC_ARGS) $(XC_BUILD_ARGS) | xcpretty
 
 test-pretty:
-	set -o pipefail && xcodebuild test $(XC_ARGS) $(XC_TEST_ARGS) | xcpretty --report junit
-
-xcbuild:
-	xctool $(XC_ARGS)
+	@set -o pipefail && xcodebuild test $(XC_ARGS) $(XC_TEST_ARGS) | xcpretty --report junit
 
 xctest:
-	xctool test $(XC_ARGS)
+	xctool $(XC_ARGS) run-tests
 
-.PHONY: bootstrap lint carthage archive test xctest build xcbuild clean
+.PHONY: bootstrap dependencies lint carthage archive build test xctest clean

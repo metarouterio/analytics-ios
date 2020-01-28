@@ -7,6 +7,7 @@
 #import "SEGReachability.h"
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
+#import "SEGMacros.h"
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
@@ -53,7 +54,7 @@ static BOOL GetAdTrackingEnabled()
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
-@property (nonatomic, strong) NSDictionary *cachedStaticContext;
+@property (nonatomic, strong) NSDictionary *_cachedStaticContext;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGReachability *reachability;
@@ -81,6 +82,7 @@ static BOOL GetAdTrackingEnabled()
         self.analytics = analytics;
         self.configuration = analytics.configuration;
         self.httpClient = httpClient;
+        self.httpClient.httpSessionDelegate = analytics.configuration.httpSessionDelegate;
         self.storage = storage;
         self.apiURL = [SEGMENT_API_BASE URLByAppendingPathComponent:@"import"];
         self.userId = [self getUserId];
@@ -106,20 +108,22 @@ static BOOL GetAdTrackingEnabled()
             [self trackAttributionData:self.configuration.trackAttributionData];
         }];
 
-        if ([NSThread isMainThread]) {
-            [self setupFlushTimer];
-        } else {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [self setupFlushTimer];
-            });
-        }
+        self.flushTimer = [NSTimer timerWithTimeInterval:self.configuration.flushInterval
+                                                  target:self
+                                                selector:@selector(flush)
+                                                userInfo:nil
+                                                 repeats:YES];
+        
+        [NSRunLoop.mainRunLoop addTimer:self.flushTimer
+                                forMode:NSDefaultRunLoopMode];
+        
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateStaticContext)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:nil];
     }
     return self;
-}
-
-- (void)setupFlushTimer
-{
-    self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
 }
 
 /*
@@ -160,8 +164,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     dict[@"device"] = ({
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         dict[@"manufacturer"] = @"Apple";
+        dict[@"type"] = @"ios";
         dict[@"model"] = GetDeviceModel();
         dict[@"id"] = [[device identifierForVendor] UUIDString];
+        dict[@"name"] = [device model];
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
             dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
         }
@@ -204,6 +210,29 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #endif
 
     return dict;
+}
+
+- (void)updateStaticContext
+{
+    self.cachedStaticContext = [self staticContext];
+}
+
+- (NSDictionary *)cachedStaticContext {
+    __block NSDictionary *result = nil;
+    weakify(self);
+    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        strongify(self);
+        result = self._cachedStaticContext;
+    });
+    return result;
+}
+
+- (void)setCachedStaticContext:(NSDictionary *)cachedStaticContext {
+    weakify(self);
+    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        strongify(self);
+        self._cachedStaticContext = cachedStaticContext;
+    });
 }
 
 - (NSDictionary *)liveContext
@@ -342,8 +371,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)track:(SEGTrackPayload *)payload
 {
-    SEGLog(@"segment integration received payload %@", payload);
-
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:payload.event forKey:@"event"];
     [dictionary setValue:payload.properties forKey:@"properties"];
@@ -461,10 +488,8 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)queuePayload:(NSDictionary *)payload
 {
     @try {
-        if (self.queue.count > 1000) {
-            // Remove the oldest element.
-            [self.queue removeObjectAtIndex:0];
-        }
+        // Trim the queue to maxQueueSize - 1 before we add a new element.
+        trimQueue(self.queue, self.analytics.configuration.maxQueueSize - 1);
         [self.queue addObject:payload];
         [self persistQueue];
         [self flushQueueByLength];
