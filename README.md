@@ -5,7 +5,7 @@ analytics-ios is an iOS client for Metarouter. Adapated from Segment.
 Special thanks to [Tony Xiao](https://github.com/tonyxiao), [Lee Hasiuk](https://github.com/lhasiuk) and [Cristian Bica](https://github.com/cristianbica) for their contributions to the library!
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/16131737/53752615-e66b8000-3e63-11e9-98f6-f478c7076537.png"/>
+  <img src="https://user-images.githubusercontent.com/1385202/73848360-a6a9d700-4830-11ea-929a-3394d4b0d2cf.png"/>
   <p><b><i>You can't fix what you can't measure</i></b></p>
 </div>
 
