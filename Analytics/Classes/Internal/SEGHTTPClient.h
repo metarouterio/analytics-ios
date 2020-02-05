@@ -6,9 +6,9 @@
 //#define SEGMENT_API_BASE [NSURL URLWithString:@"https://api-segment-io-5fsaj1xnikhp.runscope.net/v1"]
 //#define SEGMENT_CDN_BASE [NSURL URLWithString:@"https://cdn-segment-com-5fsaj1xnikhp.runscope.net/v1"]
 //#define MOBILE_SERVICE_BASE [NSURL URLWithString:@"https://mobile--service-segment-com-5fsaj1xnikhp.runscope.net/v1"]
-#define SEGMENT_API_BASE [NSURL URLWithString:@"https://api.astronomer.io/v1"]
-#define SEGMENT_CDN_BASE [NSURL URLWithString:@"https://cdn.astronomer.io/v1"]
-#define MOBILE_SERVICE_BASE [NSURL URLWithString:@"https://mobile-service.astronomer.io/v1"] // Does not exist, must ignore on default
+#define SEGMENT_API_BASE [NSURL URLWithString:@"https://api.metarouter.io/v1"]
+#define SEGMENT_CDN_BASE [NSURL URLWithString:@"https://cdn.metarouter.io/v1"]
+#define MOBILE_SERVICE_BASE [NSURL URLWithString:@"https://mobile-service.metarouter.io/v1"] // Does not exist, must ignore on default
 
 NS_ASSUME_NONNULL_BEGIN
 
