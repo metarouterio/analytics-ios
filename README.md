@@ -53,7 +53,7 @@ AstronomerAnalytics is available through [CocoaPods](http://cocoapods.org).
 ### CocoaPods
 
 ```ruby
-pod "MetarouterAnalytics", "3.8.0-beta.1"
+pod "MetarouterAnalytics", "3.8.0-beta.2"
 ```
 
 ### Carthage
