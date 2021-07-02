@@ -1,44 +1,56 @@
-SDK ?= "iphonesimulator"
-DESTINATION ?= "platform=iOS Simulator,name=iPhone X"
-PROJECT := Analytics
-XC_ARGS := -workspace $(PROJECT).xcworkspace -scheme $(PROJECT) -destination $(DESTINATION) GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
-XC_BUILD_ARGS := ONLY_ACTIVE_ARCH=NO
-XC_TEST_ARGS := GCC_GENERATE_TEST_COVERAGE_FILES=YES RUN_E2E_TESTS=$(RUN_E2E_TESTS) WEBHOOK_AUTH_USERNAME=$(WEBHOOK_AUTH_USERNAME)
+XC_ARGS := -project Segment.xcodeproj GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
+IOS_XCARGS := $(XC_ARGS) -destination "platform=iOS Simulator,name=iPhone 11" -sdk iphonesimulator
+TVOS_XCARGS := $(XC_ARGS) -destination "platform=tvOS Simulator,name=Apple TV"
+MACOS_XCARGS := $(XC_ARGS) -destination "platform=macOS"
+XC_BUILD_ARGS := -scheme Segment ONLY_ACTIVE_ARCH=NO
+XC_TEST_ARGS := GCC_GENERATE_TEST_COVERAGE_FILES=YES SWIFT_VERSION=5.0 RUN_E2E_TESTS=$(RUN_E2E_TESTS) WEBHOOK_AUTH_USERNAME=$(WEBHOOK_AUTH_USERNAME)
 
 bootstrap:
 	.buildscript/bootstrap.sh
-
-dependencies: Podfile Analytics.podspec
-	pod install
 
 lint:
 	pod lib lint --allow-warnings
 
 carthage:
-	carthage build --no-skip-current
+	carthage build --platform ios --no-skip-current
 
 archive: carthage
-	carthage archive Analytics
+	carthage archive Segment
 
-clean:
-	xcodebuild $(XC_ARGS) clean
+clean-ios:
+	set -o pipefail && xcodebuild $(IOS_XCARGS) -scheme Segment clean | xcpretty
 
-build:
-	xcodebuild $(XC_ARGS) $(XC_BUILD_ARGS)
+clean-tvos:
+	set -o pipefail && xcodebuild $(TVOS_XCARGS) -scheme Segment clean | xcpretty
 
-test:
-	xcodebuild test $(XC_ARGS) $(XC_TEST_ARGS)
+clean-macos:
+	set -o pipefail && xcodebuild $(MACOS_XCARGS) -scheme Segment clean | xcpretty
 
-clean-pretty:
-	set -o pipefail && xcodebuild $(XC_ARGS) clean | xcpretty
+clean: clean-ios clean-tvos clean-macos
 
-build-pretty:
-	set -o pipefail && xcodebuild $(XC_ARGS) $(XC_BUILD_ARGS) | xcpretty
+build-ios:
+	set -o pipefail && xcodebuild $(IOS_XCARGS) $(XC_BUILD_ARGS) | xcpretty
 
-test-pretty:
-	@set -o pipefail && xcodebuild test $(XC_ARGS) $(XC_TEST_ARGS) | xcpretty --report junit
+build-tvos:
+	set -o pipefail && xcodebuild $(TVOS_XCARGS) $(XC_BUILD_ARGS) | xcpretty
+
+build-macos:
+	set -o pipefail && xcodebuild $(MACOS_XCARGS) $(XC_BUILD_ARGS) | xcpretty
+
+build: build-ios build-tvos
+
+test-ios:
+	@set -o pipefail && xcodebuild test $(IOS_XCARGS) -scheme SegmentTests $(XC_TEST_ARGS) | xcpretty --report junit
+
+test-tvos:
+	@set -o pipefail && xcodebuild test $(TVOS_XCARGS) -scheme SegmentTests $(XC_TEST_ARGS) | xcpretty --report junit
+
+test-macos:
+	@set -o pipefail && xcodebuild test $(MACOS_XCARGS) -scheme SegmentTests $(XC_TEST_ARGS) | xcpretty --report junit
+
+test: test-ios test-tvos test-macos
 
 xctest:
-	xctool $(XC_ARGS) run-tests
+	xctool $(IOS_XCARGS) -scheme SegmentTests $(XC_TEST_ARGS) run-tests -sdk iphonesimulator
 
 .PHONY: bootstrap dependencies lint carthage archive build test xctest clean
