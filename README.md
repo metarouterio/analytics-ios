@@ -80,12 +80,11 @@ github "segmentio/analytics-ios"
 To add analytics-ios via Swift Package Mangaer, it is possible to add it one of two ways:
 
 #### Xcode
-![Xcode Add SPM Package](https://user-images.githubusercontent.com/917994/119199146-69765200-ba3f-11eb-9173-93cfb5f3cabd.png)
+![Xcode Add SPM Package](https://user-images.githubusercontent.com/1385202/124290377-073f5f80-db5c-11eb-89c1-04169a501097.jpg)
 
-![ChoosePackageRepository](https://user-images.githubusercontent.com/917994/119199143-68ddbb80-ba3f-11eb-9bf2-5dc11c208abd.png)
+![ChoosePackageRepository](https://user-images.githubusercontent.com/1385202/124290416-13c3b800-db5c-11eb-94d2-0b017500a236.jpg)
 
-![ChoosePackageOptions](https://user-images.githubusercontent.com/917994/119199139-67ac8e80-ba3f-11eb-9941-fc541030f3df.png)
-
+![ChoosePackageOptions](https://user-images.githubusercontent.com/1385202/124290468-21793d80-db5c-11eb-907b-6395b5456cfc.jpg)
 
 #### Package.swift
 ```
