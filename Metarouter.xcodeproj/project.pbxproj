@@ -27,7 +27,7 @@
 		EAA5427D1EB42B8C00945DA7 /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAA5427E1EB42B8C00945DA7 /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */; };
 		EAA542801EB4382100945DA7 /* StoreKitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA5427F1EB4382100945DA7 /* StoreKitTrackerTests.swift */; };
-		EADEB8601DECD080005322DA /* Segment.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB85E1DECD080005322DA /* Segment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADEB8601DECD080005322DA /* Metarouter.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB85E1DECD080005322DA /* Metarouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8AF1DECD12B005322DA /* SEGAES256Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */; };
 		EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87A1DECD12B005322DA /* SEGCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -121,7 +121,7 @@
 		EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGReachability.m; sourceTree = "<group>"; };
 		EAA5427F1EB4382100945DA7 /* StoreKitTrackerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreKitTrackerTests.swift; path = MetarouterTests/StoreKitTrackerTests.swift; sourceTree = SOURCE_ROOT; };
 		EADEB85B1DECD080005322DA /* Metarouter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Metarouter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EADEB85E1DECD080005322DA /* Segment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Segment.h; sourceTree = "<group>"; };
+		EADEB85E1DECD080005322DA /* Metarouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metarouter.h; sourceTree = "<group>"; };
 		EADEB85F1DECD080005322DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EADEB86A1DECD0EF005322DA /* MetarouterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetarouterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAES256Crypto.h; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		EADEB8EA1DECD335005322DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EADEB8EC1DECD335005322DA /* AnalyticsTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		EADEB8FF1DED3711005322DA /* circle.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
-		EADEB9001DED3711005322DA /* Analytics.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Analytics.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		EADEB9001DED3711005322DA /* MetarouterAnalytics.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = MetarouterAnalytics.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EADEB9011DED3711005322DA /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUtilTests.swift; sourceTree = "<group>"; };
 		FCBCA487BBFE32EC6A04989F /* Pods_MetarouterTestsTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetarouterTestsTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,7 +280,7 @@
 		EADEB8751DECD12B005322DA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB85E1DECD080005322DA /* Segment.h */,
+				EADEB85E1DECD080005322DA /* Metarouter.h */,
 				EADEB87C1DECD12B005322DA /* SEGAliasPayload.h */,
 				EADEB87D1DECD12B005322DA /* SEGAliasPayload.m */,
 				EADEB8A91DECD12B005322DA /* SEGAnalytics.h */,
@@ -367,7 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				EADEB8FF1DED3711005322DA /* circle.yml */,
-				EADEB9001DED3711005322DA /* Analytics.podspec */,
+				EADEB9001DED3711005322DA /* MetarouterAnalytics.podspec */,
 				EADEB9011DED3711005322DA /* Podfile.lock */,
 			);
 			name = "Supporting Files";
@@ -406,7 +406,7 @@
 				EADEB8D21DECD12B005322DA /* SEGUserDefaultsStorage.h in Headers */,
 				EADEB8D01DECD12B005322DA /* SEGStoreKitTracker.h in Headers */,
 				EADEB8D41DECD12B005322DA /* SEGUtils.h in Headers */,
-				EADEB8601DECD080005322DA /* Segment.h in Headers */,
+				EADEB8601DECD080005322DA /* Metarouter.h in Headers */,
 				EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */,
 				EADEB8B91DECD12B005322DA /* SEGIntegrationsManager.h in Headers */,
 				630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */,

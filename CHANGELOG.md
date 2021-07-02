@@ -1,5 +1,7 @@
 Change Log
 ==========
+Version 4.1.5 *(2 July, 2021)*
+* [Fix] Apply Metarouter branding
 Version 4.1.4 *(3 May, 2021)*
 -----------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/994) Add missing import in Segment.h for Xcode 12.5
