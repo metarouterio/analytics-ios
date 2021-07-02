@@ -41,7 +41,7 @@ Analytics is available through [CocoaPods](http://cocoapods.org) and [Carthage](
 ### CocoaPods
 
 ```ruby
-pod "MetarouterAnalytics", "3.7.0"
+pod "MetarouterAnalytics", "~> 4.1.0"
 ```
 Note: Metarouter _strongly_ recommends that you use a dynamic framework to manage your project dependencies. If you prefer static libraries, you can add `use_modular_headers!` or `use_frameworks! :linkage => :static` in your Podfile. However, you must then _manually update_ all of your dependencies on a regular schedule.
 
