@@ -48,7 +48,7 @@ Note: Metarouter _strongly_ recommends that you use a dynamic framework to manag
 ### Carthage
 
 ```
-github "metarouter/analytics-ios"
+github "metarouterio/analytics-ios"
 ```
 
 ### Swift Package Manager (SPM)
@@ -72,7 +72,7 @@ let package = Package(
         // Add a package containing Analytics as the name along with the git url
         .package(
             name: "Metarouter",
-            url: "git@github.com:metarouter/analytics-ios.git"
+            url: "git@github.com:metarouterio/analytics-ios.git"
         )
     ],
     targets: [
