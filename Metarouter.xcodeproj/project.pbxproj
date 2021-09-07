@@ -246,7 +246,7 @@
 				EADEB88C1DECD12B005322DA /* Internal */,
 			);
 			name = Analytics;
-			path = Segment;
+			path = Metarouter;
 			sourceTree = "<group>";
 		};
 		EADEB86B1DECD0EF005322DA /* AnalyticsTests */ = {
