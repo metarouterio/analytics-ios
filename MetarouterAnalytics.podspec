@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage         = "http://metarouter.io/"
   s.license          =  { :type => 'MIT' }
   s.author           = { "Astronomer" => "info@metarouter.io" }
-  s.source           = { :git => "https://github.com/metarouter/analytics-ios.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/metarouterio/analytics-ios.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/metarouter'
 
   s.ios.deployment_target = '10.0'
