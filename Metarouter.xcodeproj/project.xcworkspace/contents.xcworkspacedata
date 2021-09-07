@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Segment.xcodeproj">
+      location = "self:/Users/ovidiu/Projects/metarouter/analytics-ios/Metarouter.xcodeproj">
    </FileRef>
 </Workspace>

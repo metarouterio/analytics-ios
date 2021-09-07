@@ -1,5 +1,9 @@
 Change Log
 ==========
+Version 4.1.8 *(9 July, 2021)*
+-----------------------------
+* [New] Updated codebase with upstream
+
 Version 4.1.5 *(9 July, 2021)*
 -----------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/999) Add missing nullability identifier 

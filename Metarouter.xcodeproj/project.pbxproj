@@ -19,7 +19,7 @@
 		A34CC6DD249AAEBB00C5E368 /* SEGState.m in Sources */ = {isa = PBXBuildFile; fileRef = A34CC6DB249AAEBA00C5E368 /* SEGState.m */; };
 		A34CC6DE249AAEBB00C5E368 /* SEGState.h in Headers */ = {isa = PBXBuildFile; fileRef = A34CC6DC249AAEBB00C5E368 /* SEGState.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A352176023AD5825005B07F6 /* SEGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = A352175F23AD5825005B07F6 /* SEGMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A3B6E29925116B3A00609A13 /* Segment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Segment.framework */; };
+		A3B6E29925116B3A00609A13 /* Metarouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Metarouter.framework */; };
 		A3BECDD024BCE1E3009E2BD3 /* ObjcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */; };
 		EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA88A5971DED7608009FB66A /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */; };
@@ -27,7 +27,7 @@
 		EAA5427D1EB42B8C00945DA7 /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAA5427E1EB42B8C00945DA7 /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */; };
 		EAA542801EB4382100945DA7 /* StoreKitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA5427F1EB4382100945DA7 /* StoreKitTrackerTests.swift */; };
-		EADEB8601DECD080005322DA /* Segment.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB85E1DECD080005322DA /* Segment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADEB8601DECD080005322DA /* Metarouter.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB85E1DECD080005322DA /* Metarouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8AF1DECD12B005322DA /* SEGAES256Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */; };
 		EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87A1DECD12B005322DA /* SEGCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,10 +120,10 @@
 		EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGReachability.h; sourceTree = "<group>"; };
 		EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGReachability.m; sourceTree = "<group>"; };
 		EAA5427F1EB4382100945DA7 /* StoreKitTrackerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreKitTrackerTests.swift; path = SegmentTests/StoreKitTrackerTests.swift; sourceTree = SOURCE_ROOT; };
-		EADEB85B1DECD080005322DA /* Segment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Segment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EADEB85E1DECD080005322DA /* Segment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Segment.h; sourceTree = "<group>"; };
+		EADEB85B1DECD080005322DA /* Metarouter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Metarouter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADEB85E1DECD080005322DA /* Metarouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metarouter.h; sourceTree = "<group>"; };
 		EADEB85F1DECD080005322DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EADEB86A1DECD0EF005322DA /* SegmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SegmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADEB86A1DECD0EF005322DA /* MetarouterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetarouterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAES256Crypto.h; sourceTree = "<group>"; };
 		EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAES256Crypto.m; sourceTree = "<group>"; };
 		EADEB87A1DECD12B005322DA /* SEGCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGCrypto.h; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3B6E29925116B3A00609A13 /* Segment.framework in Frameworks */,
+				A3B6E29925116B3A00609A13 /* Metarouter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,8 +232,8 @@
 		EADEB85C1DECD080005322DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB85B1DECD080005322DA /* Segment.framework */,
-				EADEB86A1DECD0EF005322DA /* SegmentTests.xctest */,
+				EADEB85B1DECD080005322DA /* Metarouter.framework */,
+				EADEB86A1DECD0EF005322DA /* MetarouterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,7 +280,7 @@
 		EADEB8751DECD12B005322DA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB85E1DECD080005322DA /* Segment.h */,
+				EADEB85E1DECD080005322DA /* Metarouter.h */,
 				EADEB87C1DECD12B005322DA /* SEGAliasPayload.h */,
 				EADEB87D1DECD12B005322DA /* SEGAliasPayload.m */,
 				EADEB8A91DECD12B005322DA /* SEGAnalytics.h */,
@@ -406,7 +406,7 @@
 				EADEB8D21DECD12B005322DA /* SEGUserDefaultsStorage.h in Headers */,
 				EADEB8D01DECD12B005322DA /* SEGStoreKitTracker.h in Headers */,
 				EADEB8D41DECD12B005322DA /* SEGUtils.h in Headers */,
-				EADEB8601DECD080005322DA /* Segment.h in Headers */,
+				EADEB8601DECD080005322DA /* Metarouter.h in Headers */,
 				EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */,
 				EADEB8B91DECD12B005322DA /* SEGIntegrationsManager.h in Headers */,
 				630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */,
@@ -420,9 +420,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EADEB85A1DECD080005322DA /* Segment */ = {
+		EADEB85A1DECD080005322DA /* Metarouter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Segment" */;
+			buildConfigurationList = EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Metarouter" */;
 			buildPhases = (
 				EADEB8561DECD080005322DA /* Sources */,
 				EADEB8571DECD080005322DA /* Frameworks */,
@@ -433,14 +433,14 @@
 			);
 			dependencies = (
 			);
-			name = Segment;
+			name = Metarouter;
 			productName = Segment;
-			productReference = EADEB85B1DECD080005322DA /* Segment.framework */;
+			productReference = EADEB85B1DECD080005322DA /* Metarouter.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EADEB8691DECD0EF005322DA /* SegmentTests */ = {
+		EADEB8691DECD0EF005322DA /* MetarouterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "SegmentTests" */;
+			buildConfigurationList = EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "MetarouterTests" */;
 			buildPhases = (
 				EADEB8661DECD0EF005322DA /* Sources */,
 				EADEB8671DECD0EF005322DA /* Frameworks */,
@@ -451,9 +451,9 @@
 			dependencies = (
 				A3B6E29B25116B4100609A13 /* PBXTargetDependency */,
 			);
-			name = SegmentTests;
+			name = MetarouterTests;
 			productName = AnalyticsTests;
-			productReference = EADEB86A1DECD0EF005322DA /* SegmentTests.xctest */;
+			productReference = EADEB86A1DECD0EF005322DA /* MetarouterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -477,7 +477,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Segment" */;
+			buildConfigurationList = EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Metarouter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -490,8 +490,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EADEB85A1DECD080005322DA /* Segment */,
-				EADEB8691DECD0EF005322DA /* SegmentTests */,
+				EADEB85A1DECD080005322DA /* Metarouter */,
+				EADEB8691DECD0EF005322DA /* MetarouterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -576,7 +576,7 @@
 /* Begin PBXTargetDependency section */
 		A3B6E29B25116B4100609A13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EADEB85A1DECD080005322DA /* Segment */;
+			target = EADEB85A1DECD080005322DA /* Metarouter */;
 			targetProxy = A3B6E29A25116B4100609A13 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -723,7 +723,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Segment/Info.plist;
+				INFOPLIST_FILE = Metarouter/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.segment.Analytics;
@@ -747,7 +747,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Segment/Info.plist;
+				INFOPLIST_FILE = Metarouter/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.segment.Analytics;
@@ -793,7 +793,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Segment" */ = {
+		EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Metarouter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EADEB8611DECD080005322DA /* Debug */,
@@ -802,7 +802,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Segment" */ = {
+		EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Metarouter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EADEB8641DECD080005322DA /* Debug */,
@@ -811,7 +811,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "SegmentTests" */ = {
+		EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "MetarouterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EADEB8721DECD0EF005322DA /* Debug */,
