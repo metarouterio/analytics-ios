@@ -1,5 +1,9 @@
 Change Log
 ==========
+Version 4.1.9 *(2 November, 2021)*
+-----------------------------
+* [New] Updated codebase with upstream (4.1.6 version)
+
 Version 4.1.8 *(9 July, 2021)*
 -----------------------------
 * [New] Updated codebase with upstream

@@ -1,3 +1,3 @@
-github "metarouterio/analytics-ios" "4.1.8"
+github "metarouterio/analytics-ios" "4.1.9"
 # Use a local project when debugging
 # git "~/Code/metarouterio/analytics-ios/" "master"
