@@ -5,6 +5,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern NSString * const kSegmentAPIBaseHost;
 
+
 NS_SWIFT_NAME(HTTPClient)
 @interface SEGHTTPClient : NSObject
 

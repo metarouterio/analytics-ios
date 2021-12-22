@@ -66,7 +66,7 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(config.maxQueueSize, 1000)
         XCTAssertEqual(config.writeKey, "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
         // not needed as segment settings API can provide different host values now.
-        //XCTAssertEqual(config.apiHost?.absoluteString, "https://e.metarouter.io/v1")
+        //XCTAssertEqual(config.apiHost?.absoluteString, "https://api.segment.io/v1")
         XCTAssertEqual(config.shouldUseLocationServices, false)
         XCTAssertEqual(config.enableAdvertisingTracking, true)
         XCTAssertEqual(config.shouldUseBluetooth,  false)

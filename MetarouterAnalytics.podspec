@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "MetarouterAnalytics"
   s.module_name      = "Metarouter"
-  s.version          = "4.1.7"
+  s.version          = "4.1.10"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
   s.description      = <<-DESC
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage         = "http://metarouter.io/"
   s.license          =  { :type => 'MIT' }
   s.author           = { "Astronomer" => "info@metarouter.io" }
-  s.source           = { :git => "https://github.com/metarouter/analytics-ios.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/metarouterio/analytics-ios.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/metarouter'
 
   s.ios.deployment_target = '10.0'
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.13'
 
   s.source_files = [
-    'Metarouter/Classes/**/*.{h,m}',
-    'Metarouter/Internal/**/*.{h,m}'
+    'Segment/Classes/**/*.{h,m}',
+    'Segment/Internal/**/*.{h,m}'
   ]
 end

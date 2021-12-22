@@ -39,7 +39,7 @@ class HTTPClientTest: XCTestCase {
     
     func testDefaultRequestFactor() {
         let factory = HTTPClient.defaultRequestFactory()
-        let url = URL(string: "https://e.metarouter.io/v1/batch")
+        let url = URL(string: "https://api.segment.io/v1/batch")
         let request = factory(url!)
         XCTAssertEqual(request.url, url, "URLs should be the same")
     }
@@ -128,7 +128,7 @@ class HTTPClientTest: XCTestCase {
     }
     
     func testUploadNoRetry2xx() {
-        _ = stubRequest("POST", "https://e.metarouter.io/v1/batch" as NSString)
+        _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
             .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
             .withJsonGzippedBody(batch as AnyObject)
             .withWriteKey("bar")
@@ -142,7 +142,7 @@ class HTTPClientTest: XCTestCase {
     }
     
     func testUploadRetry3xx() {
-        _ = stubRequest("POST", "https://e.metarouter.io/v1/batch" as NSString)
+        _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
             .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
             .withJsonGzippedBody(batch as AnyObject)
             .withWriteKey("bar")
@@ -156,7 +156,7 @@ class HTTPClientTest: XCTestCase {
     }
     
     func testUploadNoRetry4xx() {
-        _ = stubRequest("POST", "https://e.metarouter.io/v1/batch" as NSString)
+        _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
             .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
             .withJsonGzippedBody(batch as AnyObject)
             .withWriteKey("bar")
@@ -170,7 +170,7 @@ class HTTPClientTest: XCTestCase {
     }
     
     func testRetryFor429() {
-        _ = stubRequest("POST", "https://e.metarouter.io/v1/batch" as NSString)
+        _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
             .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
             .withJsonGzippedBody(batch as AnyObject)
             .withWriteKey("bar")
@@ -184,7 +184,7 @@ class HTTPClientTest: XCTestCase {
     }
     
     func testRetryFor5xx() {
-        _ = stubRequest("POST", "https://e.metarouter.io/v1/batch" as NSString)
+        _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
             .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
             .withJsonGzippedBody(batch as AnyObject)
             .withWriteKey("bar")

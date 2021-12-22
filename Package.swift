@@ -24,8 +24,7 @@ let package = Package(
         .target(
             name: "Metarouter",
             dependencies: [],
-            path: "Metarouter/",
-            exclude: ["SwiftSources"],
+            path: "Segment/",
             sources: ["Classes", "Internal"],
             publicHeadersPath: "Classes",
             cSettings: [

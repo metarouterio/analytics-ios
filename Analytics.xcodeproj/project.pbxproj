@@ -19,7 +19,7 @@
 		A34CC6DD249AAEBB00C5E368 /* SEGState.m in Sources */ = {isa = PBXBuildFile; fileRef = A34CC6DB249AAEBA00C5E368 /* SEGState.m */; };
 		A34CC6DE249AAEBB00C5E368 /* SEGState.h in Headers */ = {isa = PBXBuildFile; fileRef = A34CC6DC249AAEBB00C5E368 /* SEGState.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A352176023AD5825005B07F6 /* SEGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = A352175F23AD5825005B07F6 /* SEGMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		A3B6E29925116B3A00609A13 /* Metarouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Metarouter.framework */; };
+		A3B6E29925116B3A00609A13 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Analytics.framework */; };
 		A3BECDD024BCE1E3009E2BD3 /* ObjcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */; };
 		EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA88A5971DED7608009FB66A /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */; };
@@ -27,7 +27,7 @@
 		EAA5427D1EB42B8C00945DA7 /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAA5427E1EB42B8C00945DA7 /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */; };
 		EAA542801EB4382100945DA7 /* StoreKitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA5427F1EB4382100945DA7 /* StoreKitTrackerTests.swift */; };
-		EADEB8601DECD080005322DA /* Metarouter.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB85E1DECD080005322DA /* Metarouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADEB8601DECD080005322DA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB85E1DECD080005322DA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8AF1DECD12B005322DA /* SEGAES256Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */; };
 		EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87A1DECD12B005322DA /* SEGCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -93,7 +93,7 @@
 			containerPortal = EADEB8521DECD080005322DA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EADEB85A1DECD080005322DA;
-			remoteInfo = Metarouter;
+			remoteInfo = Segment;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -113,17 +113,17 @@
 		A352175F23AD5825005B07F6 /* SEGMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGMacros.h; sourceTree = "<group>"; };
 		A3BECDCE24BCE1E3009E2BD3 /* ObjcUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcUtils.h; sourceTree = "<group>"; };
 		A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjcUtils.m; sourceTree = "<group>"; };
-		C31674B18CD818C64F8F3935 /* Pods_MetarouterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetarouterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31674B18CD818C64F8F3935 /* Pods_SegmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SegmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA88A5971DED7608009FB66A /* SEGSerializableValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSerializableValue.h; sourceTree = "<group>"; };
 		EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		EAA542761EB4035400945DA7 /* TrackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingTests.swift; sourceTree = "<group>"; };
 		EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGReachability.h; sourceTree = "<group>"; };
 		EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGReachability.m; sourceTree = "<group>"; };
-		EAA5427F1EB4382100945DA7 /* StoreKitTrackerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreKitTrackerTests.swift; path = MetarouterTests/StoreKitTrackerTests.swift; sourceTree = SOURCE_ROOT; };
-		EADEB85B1DECD080005322DA /* Metarouter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Metarouter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EADEB85E1DECD080005322DA /* Metarouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metarouter.h; sourceTree = "<group>"; };
+		EAA5427F1EB4382100945DA7 /* StoreKitTrackerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreKitTrackerTests.swift; path = SegmentTests/StoreKitTrackerTests.swift; sourceTree = SOURCE_ROOT; };
+		EADEB85B1DECD080005322DA /* Analytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Analytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADEB85E1DECD080005322DA /* Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		EADEB85F1DECD080005322DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EADEB86A1DECD0EF005322DA /* MetarouterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetarouterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADEB86A1DECD0EF005322DA /* AnalyticsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAES256Crypto.h; sourceTree = "<group>"; };
 		EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAES256Crypto.m; sourceTree = "<group>"; };
 		EADEB87A1DECD12B005322DA /* SEGCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGCrypto.h; sourceTree = "<group>"; };
@@ -184,10 +184,10 @@
 		EADEB8EA1DECD335005322DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EADEB8EC1DECD335005322DA /* AnalyticsTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		EADEB8FF1DED3711005322DA /* circle.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
-		EADEB9001DED3711005322DA /* MetarouterAnalytics.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = MetarouterAnalytics.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		EADEB9001DED3711005322DA /* Analytics.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Analytics.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EADEB9011DED3711005322DA /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUtilTests.swift; sourceTree = "<group>"; };
-		FCBCA487BBFE32EC6A04989F /* Pods_MetarouterTestsTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetarouterTestsTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCBCA487BBFE32EC6A04989F /* Pods_SegmentTestsTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SegmentTestsTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3B6E29925116B3A00609A13 /* Metarouter.framework in Frameworks */,
+				A3B6E29925116B3A00609A13 /* Analytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,8 +212,8 @@
 		245A982558D113AD25B2912E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C31674B18CD818C64F8F3935 /* Pods_MetarouterTests.framework */,
-				FCBCA487BBFE32EC6A04989F /* Pods_MetarouterTestsTVOS.framework */,
+				C31674B18CD818C64F8F3935 /* Pods_SegmentTests.framework */,
+				FCBCA487BBFE32EC6A04989F /* Pods_SegmentTestsTVOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -232,8 +232,8 @@
 		EADEB85C1DECD080005322DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB85B1DECD080005322DA /* Metarouter.framework */,
-				EADEB86A1DECD0EF005322DA /* MetarouterTests.xctest */,
+				EADEB85B1DECD080005322DA /* Analytics.framework */,
+				EADEB86A1DECD0EF005322DA /* AnalyticsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -246,7 +246,7 @@
 				EADEB88C1DECD12B005322DA /* Internal */,
 			);
 			name = Analytics;
-			path = Metarouter;
+			path = Segment;
 			sourceTree = "<group>";
 		};
 		EADEB86B1DECD0EF005322DA /* AnalyticsTests */ = {
@@ -273,14 +273,14 @@
 			);
 			indentWidth = 4;
 			name = AnalyticsTests;
-			path = MetarouterTests;
+			path = SegmentTests;
 			sourceTree = "<group>";
 			tabWidth = 4;
 		};
 		EADEB8751DECD12B005322DA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB85E1DECD080005322DA /* Metarouter.h */,
+				EADEB85E1DECD080005322DA /* Analytics.h */,
 				EADEB87C1DECD12B005322DA /* SEGAliasPayload.h */,
 				EADEB87D1DECD12B005322DA /* SEGAliasPayload.m */,
 				EADEB8A91DECD12B005322DA /* SEGAnalytics.h */,
@@ -367,7 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				EADEB8FF1DED3711005322DA /* circle.yml */,
-				EADEB9001DED3711005322DA /* MetarouterAnalytics.podspec */,
+				EADEB9001DED3711005322DA /* Analytics.podspec */,
 				EADEB9011DED3711005322DA /* Podfile.lock */,
 			);
 			name = "Supporting Files";
@@ -406,7 +406,7 @@
 				EADEB8D21DECD12B005322DA /* SEGUserDefaultsStorage.h in Headers */,
 				EADEB8D01DECD12B005322DA /* SEGStoreKitTracker.h in Headers */,
 				EADEB8D41DECD12B005322DA /* SEGUtils.h in Headers */,
-				EADEB8601DECD080005322DA /* Metarouter.h in Headers */,
+				EADEB8601DECD080005322DA /* Analytics.h in Headers */,
 				EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */,
 				EADEB8B91DECD12B005322DA /* SEGIntegrationsManager.h in Headers */,
 				630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */,
@@ -420,9 +420,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EADEB85A1DECD080005322DA /* Metarouter */ = {
+		EADEB85A1DECD080005322DA /* Analytics */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Metarouter" */;
+			buildConfigurationList = EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Analytics" */;
 			buildPhases = (
 				EADEB8561DECD080005322DA /* Sources */,
 				EADEB8571DECD080005322DA /* Frameworks */,
@@ -433,14 +433,14 @@
 			);
 			dependencies = (
 			);
-			name = Metarouter;
-			productName = Metarouter;
-			productReference = EADEB85B1DECD080005322DA /* Metarouter.framework */;
+			name = Analytics;
+			productName = Segment;
+			productReference = EADEB85B1DECD080005322DA /* Analytics.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EADEB8691DECD0EF005322DA /* MetarouterTests */ = {
+		EADEB8691DECD0EF005322DA /* AnalyticsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "MetarouterTests" */;
+			buildConfigurationList = EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "AnalyticsTests" */;
 			buildPhases = (
 				EADEB8661DECD0EF005322DA /* Sources */,
 				EADEB8671DECD0EF005322DA /* Frameworks */,
@@ -451,9 +451,9 @@
 			dependencies = (
 				A3B6E29B25116B4100609A13 /* PBXTargetDependency */,
 			);
-			name = MetarouterTests;
+			name = AnalyticsTests;
 			productName = AnalyticsTests;
-			productReference = EADEB86A1DECD0EF005322DA /* MetarouterTests.xctest */;
+			productReference = EADEB86A1DECD0EF005322DA /* AnalyticsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -464,7 +464,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 1220;
-				ORGANIZATIONNAME = Metarouter;
+				ORGANIZATIONNAME = Segment;
 				TargetAttributes = {
 					EADEB85A1DECD080005322DA = {
 						CreatedOnToolsVersion = 8.1;
@@ -477,7 +477,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Metarouter" */;
+			buildConfigurationList = EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Analytics" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -490,8 +490,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EADEB85A1DECD080005322DA /* Metarouter */,
-				EADEB8691DECD0EF005322DA /* MetarouterTests */,
+				EADEB85A1DECD080005322DA /* Analytics */,
+				EADEB8691DECD0EF005322DA /* AnalyticsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -576,7 +576,7 @@
 /* Begin PBXTargetDependency section */
 		A3B6E29B25116B4100609A13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EADEB85A1DECD080005322DA /* Metarouter */;
+			target = EADEB85A1DECD080005322DA /* Analytics */;
 			targetProxy = A3B6E29A25116B4100609A13 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -723,10 +723,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Metarouter/Info.plist;
+				INFOPLIST_FILE = Segment/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.segment.Analytics;
+				MARKETING_VERSION = 4.1.10;
+				PRODUCT_BUNDLE_IDENTIFIER = io.metarouter.Analytics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -747,10 +748,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Metarouter/Info.plist;
+				INFOPLIST_FILE = Segment/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.segment.Analytics;
+				MARKETING_VERSION = 4.1.10;
+				PRODUCT_BUNDLE_IDENTIFIER = io.metarouter.Analytics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -762,13 +764,13 @@
 		EADEB8721DECD0EF005322DA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MetarouterTests/Info.plist;
+				INFOPLIST_FILE = SegmentTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.segment.AnalyticsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx appletvos appletvsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "MetarouterTests/AnalyticsTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SegmentTests/AnalyticsTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3";
@@ -778,12 +780,12 @@
 		EADEB8731DECD0EF005322DA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MetarouterTests/Info.plist;
+				INFOPLIST_FILE = SegmentTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.segment.AnalyticsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx appletvos appletvsimulator";
-				SWIFT_OBJC_BRIDGING_HEADER = "MetarouterTests/AnalyticsTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SegmentTests/AnalyticsTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3";
@@ -793,7 +795,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Metarouter" */ = {
+		EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Analytics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EADEB8611DECD080005322DA /* Debug */,
@@ -802,7 +804,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Metarouter" */ = {
+		EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Analytics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EADEB8641DECD080005322DA /* Debug */,
@@ -811,7 +813,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "MetarouterTests" */ = {
+		EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "AnalyticsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EADEB8721DECD0EF005322DA /* Debug */,

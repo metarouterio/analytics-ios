@@ -156,7 +156,9 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 - (void)onAppForeground:(NSNotification *)note
 {
-    [self refreshSettings];
+    seg_dispatch_specific_async(_serialQueue, ^{
+        [self refreshSettings];
+    });
 }
 
 - (void)handleAppStateNotification:(NSString *)notificationName
@@ -520,7 +522,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 + (BOOL)isIntegration:(NSString *)key enabledInOptions:(NSDictionary *)options
 {
-    // If the event is in the tracking plan, it should always be sent to e.metarouter.io.
+    // If the event is in the tracking plan, it should always be sent to api.segment.io.
     if ([kSEGSegmentDestinationName isEqualToString:key]) {
         return YES;
     }
@@ -550,7 +552,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 + (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(NSString *)key inPlan:(NSDictionary *)plan
 {
-    // Whether the event is enabled or disabled, it should always be sent to e.metarouter.io.
+    // Whether the event is enabled or disabled, it should always be sent to api.segment.io.
     if ([key isEqualToString:kSEGSegmentDestinationName]) {
         return YES;
     }

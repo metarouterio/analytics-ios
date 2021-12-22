@@ -22,6 +22,10 @@ DerivedData
 # Bundler
 .bundle
 
+# Swift Package Manager
+.build
+.swiftpm
+
 Carthage
 
 # CocoaPods typically recommends against ignoring the Pods directory
@@ -32,3 +36,4 @@ Carthage
 # itself has no pod dependencies, only our tests do.
 Pods/
 .clang-format
+.idea

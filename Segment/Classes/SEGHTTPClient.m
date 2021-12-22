@@ -3,7 +3,7 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGUtils.h"
 
-#define CDN_BASE [NSURL URLWithString:@"https://cdn.metarouter.io/v1"]
+#define SEGMENT_CDN_BASE [NSURL URLWithString:@"https://cdn.metarouter.io/v1"]
 
 static const NSUInteger kMaxBatchSize = 475000; // 475KB
 
@@ -151,7 +151,7 @@ NSString * const kSegmentAPIBaseHost = @"https://e.metarouter.io/v1";
 {
     NSURLSession *session = self.genericSession;
 
-    NSURL *url = [CDN_BASE URLByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
+    NSURL *url = [SEGMENT_CDN_BASE URLByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"GET"];
 
