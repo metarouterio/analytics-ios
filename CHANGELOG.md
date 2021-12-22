@@ -1,10 +1,16 @@
 Change Log
 ==========
-
-Version 4.1.6 *(5 October, 2021)*
+Version 4.2.0 *(22 December, 2021)*
 -----------------------------
-* [Fix](https://github.com/segmentio/analytics-ios/pull/1016) Removed unused exclude in Package.swift
-* [Fix](https://github.com/segmentio/analytics-ios/pull/1009) Fix potential deadlock on first app launch
+* [Fix] Removed unnecessary renames so syncing with upstream is simpler
+
+Version 4.1.9 *(2 November, 2021)*
+-----------------------------
+* [New] Updated codebase with upstream (4.1.6 version)
+
+Version 4.1.8 *(9 July, 2021)*
+-----------------------------
+* [New] Updated codebase with upstream
 
 Version 4.1.5 *(9 July, 2021)*
 -----------------------------
